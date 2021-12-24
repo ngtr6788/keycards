@@ -4,11 +4,15 @@ function Home() {
   return (
     <div className="home">
       <p>Choose which app you want to learn keyboard shortcuts</p>
-      <Link to="/vim">Vim</Link>
-      <br />
-      <Link to="/sublime-win">Sublime (Windows)</Link>
-      <br />
-      <Link to="/vscode-win">VS Code (Windows)</Link>
+      <Link className="vim" to="/vim">
+        Vim
+      </Link>
+      <Link className="sublime" to="/sublime-win">
+        Sublime (Windows)
+      </Link>
+      <Link className="vscode" to="/vscode-win">
+        VS Code (Windows)
+      </Link>
     </div>
   );
 }

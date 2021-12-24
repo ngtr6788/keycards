@@ -1,8 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    sans-serif; */
+  font-family: "Space Mono", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -11,4 +14,29 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+a {
+  background-color: crimson;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.vim {
+  background-color: #019833;
+  color: white;
+}
+
+.sublime {
+  background-color: #ff9800;
+  color: black;
+}
+
+.vscode {
+  background-color: #2f85bb;
+  color: white;
 }
