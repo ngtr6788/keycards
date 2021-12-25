@@ -4,15 +4,19 @@ import { Link } from "react-router-dom";
 
 // Functional component of Flashcard
 function Flashcard(props) {
+  // state variables. I tried to avoid this, yet I have a lot
+  // of variables. Doesn't look good, codewise.
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [input, setInput] = useState("");
   const [reply, setReply] = useState("");
   const [hasReplied, setHasReplied] = useState(false);
-  const [refresh, setRefresh] = useState(false); // true and false doesn't mean anything. It's an internal clock
+  const [tick, setTick] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
-  // this useEffect changes the question every time refresh changes
+  // useEffect takes a function where every time the seed is generated
+  // it fetches data from props.csv, it takes a keyboard shortcut
+  // a random one, and sets the Q and A.
   useEffect(() => {
     fetch(props.csv)
       .then((response) => {
@@ -36,12 +40,14 @@ function Flashcard(props) {
       .catch((err) => {
         console.log(err.message);
       });
-  }, [refresh, props.csv]);
+  }, [tick, props.csv]);
 
+  // handleKeyDown takes in keyboard input and stores it
+  // however, when enter is hit, the input is submitted for feedback
   const handleKeyDown = (event) => {
     // TODO: Figure out a better way to deal with the keyboard inputs
     if (hasReplied) {
-      setRefresh(!refresh);
+      setTick(!tick);
       setLoading(true);
     } else {
       if (event.key === "Escape") {
@@ -68,6 +74,7 @@ function Flashcard(props) {
   };
 
   // this useEffects adds and removes EventListener every time
+  // the return function is for cleanup
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     return function cleanup() {
@@ -77,8 +84,7 @@ function Flashcard(props) {
 
   return (
     <div>
-      {isLoading && <p>Loading...</p>}
-      {!isLoading && <p className="question">{question}</p>}
+      <p className="question">{isLoading ? "Loading..." : question}</p>
       {/* Here, we insert the question here */}
       <p className="answer" onKeyDown={handleKeyDown} tabIndex="0">
         {input}
@@ -86,7 +92,9 @@ function Flashcard(props) {
       {/* Here, we insert our answer */}
       <Feedback answer={answer} reply={reply} hasReplied={hasReplied} />
       {/* <button onClick={props.goback}>Go back</button> */}
-      <Link to="/">Go back to home screen</Link>
+      <Link to="/" className="backhome">
+        Go back to home screen
+      </Link>
     </div>
   );
 }

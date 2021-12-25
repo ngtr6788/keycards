@@ -11,4 +11,4 @@ TL;DR: It's a work-in-progress keyboard shortcut testing app.
 I'm experimenting this app a little by publishing it on GitHub just to see if it still works.
 Apologies if it's not working right now. However, if you want to play around, here you go.
 
-Link: [ngtr6788.github.io/keycards]{https://ngtr6788.github.io/keycards}
+Link: [ngtr6788.github.io/keycards](https://ngtr6788.github.io/keycards)
