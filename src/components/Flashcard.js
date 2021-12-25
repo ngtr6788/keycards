@@ -21,15 +21,26 @@ function Flashcard(props) {
     fetch(props.csv)
       .then((response) => {
         if (!response.ok) {
-          throw Error("Cannot fetch data for the resource.");
+          throw Error("Error: Cannot fetch data for the resource.");
         }
         return response.text();
       })
       .then((text) => {
         // TODO: Figure out a way to better parse the keyboard inputs
+        if (text.length === 0) {
+          throw Error("Error: No data fetched.");
+        }
+
         let keybind_list = text.split("\r\n");
         const i = Math.floor(Math.random() * keybind_list.length);
         let key = keybind_list[i].split(",");
+        if (key.length !== 2) {
+          throw Error("Error: No question/answer pair detected.");
+        }
+        if (typeof key[0] !== "string" || typeof key[1] !== "string") {
+          throw Error("Error: Unable to read question/answer as string.");
+        }
+
         setQuestion(key[1].trim());
         setAnswer(key[0].trim());
         setInput("");
@@ -39,6 +50,7 @@ function Flashcard(props) {
       })
       .catch((err) => {
         console.log(err.message);
+        setLoading(false);
       });
   }, [tick, props.csv]);
 
