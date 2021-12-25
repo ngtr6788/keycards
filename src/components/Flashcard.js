@@ -7,12 +7,23 @@ function Flashcard(props) {
   // state variables. I tried to avoid this, yet I have a lot
   // of variables. Doesn't look good, codewise.
   const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
-  const [input, setInput] = useState("");
-  const [reply, setReply] = useState("");
+
+  // we store our input and answer as an array of keys
+  const [answer, setAnswer] = useState([]);
+  const [input, setInput] = useState([]);
+  const [reply, setReply] = useState([]);
+
   const [hasReplied, setHasReplied] = useState(false);
   const [tick, setTick] = useState(false);
   const [isLoading, setLoading] = useState(true);
+
+  // we split each key by + or space, capitalize them, then return it
+  const parseKeybind = (keybind) => {
+    // we split keys by +
+    const keysArray = keybind.trim().split(/\+| /);
+    const finalKeys = keysArray.map((key) => key.toUpperCase());
+    return finalKeys;
+  };
 
   // useEffect takes a function where every time the seed is generated
   // it fetches data from props.csv, it takes a keyboard shortcut
@@ -31,9 +42,15 @@ function Flashcard(props) {
           throw Error("Error: No data fetched.");
         }
 
+        // split many keyboard shortcuts by line break
         let keybind_list = text.split("\r\n");
+
+        // choose random index for the keyboard shortcut
         const i = Math.floor(Math.random() * keybind_list.length);
+
+        // we separate the keyboard shortcut with what it does
         let key = keybind_list[i].split(",");
+
         if (key.length !== 2) {
           throw Error("Error: No question/answer pair detected.");
         }
@@ -41,10 +58,13 @@ function Flashcard(props) {
           throw Error("Error: Unable to read question/answer as string.");
         }
 
-        setQuestion(key[1].trim());
-        setAnswer(key[0].trim());
-        setInput("");
-        setReply("");
+        const newQuestion = key[1].trim();
+        const newAnswer = parseKeybind(key[0]);
+
+        setQuestion(newQuestion);
+        setAnswer(newAnswer);
+        setInput([]);
+        setReply([]);
         setHasReplied(false);
         setLoading(false);
       })
@@ -62,25 +82,49 @@ function Flashcard(props) {
       setTick(!tick);
       setLoading(true);
     } else {
-      if (event.key === "Escape") {
-        // clear input
-        let newInput = "";
-        if (input === "") {
-          newInput = "Esc";
-        }
-        setInput(newInput);
-      } else if (event.key === "Enter") {
-        // submit input
+      let newKey = event.key.toUpperCase();
+      if (newKey === "ENTER") {
         setReply(input);
         setHasReplied(true);
-      } else if (event.key === "Control") {
-        // control key
-        setInput(input + "Ctrl + ");
-      } else if (event.key.length === 1) {
-        // single digit keys
-        setInput(input + event.key);
       } else {
-        // ignore all others
+        // here, we convert KeyboardDown.key values into the values
+        // we commonly see in most keyboard shortcut reference sheets
+        switch (newKey) {
+          case "ESCAPE":
+            newKey = "ESC";
+            if (input.length !== 0) {
+              setInput([]);
+              return;
+            }
+            break;
+          case "ARROWUP":
+            newKey = "UP";
+            break;
+          case "ARROWDOWN":
+            newKey = "DOWN";
+            break;
+          case "ARROWLEFT":
+            newKey = "LEFT";
+            break;
+          case "ARROWRIGHT":
+            newKey = "RIGHT";
+            break;
+          case "PAGEUP":
+            newKey = "PGUP";
+            break;
+          case "PAGEDOWN":
+            newKey = "PGDOWN";
+            break;
+          case "DELETE":
+            newKey = "DEL";
+            break;
+          case "CONTROL":
+            newKey = "CTRL";
+            break;
+          default:
+            break;
+        }
+        setInput([...input, newKey]);
       }
     }
   };
@@ -99,7 +143,7 @@ function Flashcard(props) {
       <p className="question">{isLoading ? "Loading..." : question}</p>
       {/* Here, we insert the question here */}
       <p className="answer" onKeyDown={handleKeyDown} tabIndex="0">
-        {input}
+        {input.map((x) => " " + x)}
       </p>
       {/* Here, we insert our answer */}
       <Feedback answer={answer} reply={reply} hasReplied={hasReplied} />

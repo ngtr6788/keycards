@@ -7,10 +7,10 @@ function Home() {
       <Link className="vim" to="/vim">
         Vim
       </Link>
-      <Link className="sublime" to="/sublime-win">
+      <Link className="sublime-win" to="/sublime-win">
         Sublime (Windows)
       </Link>
-      <Link className="vscode" to="/vscode-win">
+      <Link className="vscode-win" to="/vscode-win">
         VS Code (Windows)
       </Link>
     </div>
