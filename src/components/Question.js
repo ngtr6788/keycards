@@ -22,18 +22,14 @@ export default function Question(props) {
 
         // split many keyboard shortcuts by line break
         let keybind_list = text.split("\n");
-        console.log(keybind_list);
 
         keybind_list.forEach((line) => console.log(line));
-        console.log(keybind_list.length);
 
         // choose random index for the keyboard shortcut
         const i = Math.floor(Math.random() * keybind_list.length);
-        console.log(i);
 
         // we separate the keyboard shortcut with what it does
         let key = keybind_list[i].split(",");
-        console.log(key);
 
         if (key.length !== 2) {
           throw Error("Error: No question/answer pair detected.");
