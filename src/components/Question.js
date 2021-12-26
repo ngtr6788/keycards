@@ -15,7 +15,6 @@ export default function Question(props) {
         return response.text();
       })
       .then((text) => {
-        console.log(text);
         // TODO: Figure out a way to better parse the keyboard inputs
         if (text.length === 0) {
           throw Error("Error: No data fetched.");
@@ -23,12 +22,17 @@ export default function Question(props) {
 
         // split many keyboard shortcuts by line break
         let keybind_list = text.split("\r\n");
+        console.log(keybind_list);
+
+        console.log(keybind_list.forEach((line) => console.log(line)));
 
         // choose random index for the keyboard shortcut
         const i = Math.floor(Math.random() * keybind_list.length);
+        console.log(i);
 
         // we separate the keyboard shortcut with what it does
         let key = keybind_list[i].split(",");
+        console.log(key);
 
         if (key.length !== 2) {
           throw Error("Error: No question/answer pair detected.");
