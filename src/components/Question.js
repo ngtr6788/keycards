@@ -21,7 +21,7 @@ export default function Question(props) {
         }
 
         // split many keyboard shortcuts by line break
-        let keybind_list = text.split("\r\n");
+        let keybind_list = text.split("\n");
 
         // choose random index for the keyboard shortcut
         const i = Math.floor(Math.random() * keybind_list.length);
