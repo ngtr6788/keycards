@@ -24,7 +24,8 @@ export default function Question(props) {
         let keybind_list = text.split("\r\n");
         console.log(keybind_list);
 
-        console.log(keybind_list.forEach((line) => console.log(line)));
+        keybind_list.forEach((line) => console.log(line));
+        console.log(keybind_list.length);
 
         // choose random index for the keyboard shortcut
         const i = Math.floor(Math.random() * keybind_list.length);
