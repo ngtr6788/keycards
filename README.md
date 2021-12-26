@@ -11,7 +11,7 @@ TL;DR: It's a work-in-progress keyboard shortcut testing app.
 I'm experimenting this app a little by publishing it on GitHub just to see if it still works.
 Apologies if it's not working right now. However, if you want to play around, here you go.
 
-Link: [ngtr6788.github.io/keycards](https://ngtr6788.github.io/keycards)
+Link: [https://keycards.netlify.app/](https://keycards.netlify.app/)
 
 If you found this code, you can download this and follow the Create React App instructions below.
 (Yes, it's just the README.md created by Create React App, but it's useful).
