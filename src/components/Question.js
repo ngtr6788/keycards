@@ -15,6 +15,7 @@ export default function Question(props) {
         return response.text();
       })
       .then((text) => {
+        console.log(text);
         // TODO: Figure out a way to better parse the keyboard inputs
         if (text.length === 0) {
           throw Error("Error: No data fetched.");
