@@ -41,6 +41,9 @@ export default function WindowsFlashcard(props) {
       case "CONTROL":
         newKey = "CTRL";
         break;
+      case " ":
+        newKey = "[SPACE]";
+        break;
       default:
         break;
     }
