@@ -31,11 +31,11 @@ function Feedback(props) {
         color: "#7e0000",
       };
       is_correct += "That's incorrect. Correct answer: ";
-      for (let i = 0; i < props.answer.length; ++i) {
+      for (let i = 0; i < props.displayAnswer.length; ++i) {
         if (i !== 0) {
           is_correct += " + ";
         }
-        is_correct += props.answer[i];
+        is_correct += props.displayAnswer[i];
       }
     }
   }

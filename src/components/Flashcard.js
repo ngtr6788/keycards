@@ -3,10 +3,34 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // Functional component of Flashcard
-function Flashcard(props) {
+
+/** Functional React component of Flashcard
+ *
+ * csv is the path to the csv file to fetch
+ *
+ * parseKeybind returns an array of two arrays.
+ *  - The first array is an array for Feedback. Every element is
+ * iterated with +'s
+ *  - The second array is an array for answer, which represents
+ * every key typed out there
+ *
+ * nextKey takes in an array of strings and a string
+ *  - The array of strings represent the previous keyboard inputs
+ *  - The string represents the next key typed
+ *
+ * @param {string} csv
+ * @param parseKeybind - string => [Array(string), Array(string)]
+ * @param nextKey - (Array(string), string) => Array(string)
+ * @returns an React.create??
+ */
+function Flashcard({ csv, parseKeybind, nextKey }) {
   // state variables. I tried to avoid this, yet I have a lot
   // of variables. Doesn't look good, codewise.
   const [question, setQuestion] = useState("");
+
+  // displayAns is an array of string used to display in Feedback
+  // set by parseKeybind property
+  const [displayAns, setDisplayAns] = useState([]);
 
   // we store our input and answer as an array of keys
   const [answer, setAnswer] = useState([]);
@@ -17,19 +41,11 @@ function Flashcard(props) {
   const [tick, setTick] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
-  // we split each key by + or space, capitalize them, then return it
-  const parseKeybind = (keybind) => {
-    // we split keys by +
-    const keysArray = keybind.trim().split(/\+| /);
-    const finalKeys = keysArray.map((key) => key.toUpperCase());
-    return finalKeys;
-  };
-
   // useEffect takes a function where every time the seed is generated
   // it fetches data from props.csv, it takes a keyboard shortcut
   // a random one, and sets the Q and A.
   useEffect(() => {
-    fetch(props.csv)
+    fetch(csv)
       .then((response) => {
         if (!response.ok) {
           throw Error("Error: Cannot fetch data for the resource.");
@@ -59,9 +75,10 @@ function Flashcard(props) {
         }
 
         const newQuestion = key[1].trim();
-        const newAnswer = parseKeybind(key[0]);
+        const [display, newAnswer] = parseKeybind(key[0].trim());
 
         setQuestion(newQuestion);
+        setDisplayAns(display);
         setAnswer(newAnswer);
         setInput([]);
         setReply([]);
@@ -70,9 +87,10 @@ function Flashcard(props) {
       })
       .catch((err) => {
         console.log(err.message);
+        setQuestion(err.message);
         setLoading(false);
       });
-  }, [tick, props.csv]);
+  }, [tick, csv, parseKeybind]);
 
   // handleKeyDown takes in keyboard input and stores it
   // however, when enter is hit, the input is submitted for feedback
@@ -82,49 +100,13 @@ function Flashcard(props) {
       setTick(!tick);
       setLoading(true);
     } else {
-      let newKey = event.key.toUpperCase();
-      if (newKey === "ENTER") {
+      if (event.key === "Enter") {
         setReply(input);
         setHasReplied(true);
       } else {
         // here, we convert KeyboardDown.key values into the values
         // we commonly see in most keyboard shortcut reference sheets
-        switch (newKey) {
-          case "ESCAPE":
-            newKey = "ESC";
-            if (input.length !== 0) {
-              setInput([]);
-              return;
-            }
-            break;
-          case "ARROWUP":
-            newKey = "UP";
-            break;
-          case "ARROWDOWN":
-            newKey = "DOWN";
-            break;
-          case "ARROWLEFT":
-            newKey = "LEFT";
-            break;
-          case "ARROWRIGHT":
-            newKey = "RIGHT";
-            break;
-          case "PAGEUP":
-            newKey = "PGUP";
-            break;
-          case "PAGEDOWN":
-            newKey = "PGDOWN";
-            break;
-          case "DELETE":
-            newKey = "DEL";
-            break;
-          case "CONTROL":
-            newKey = "CTRL";
-            break;
-          default:
-            break;
-        }
-        setInput([...input, newKey]);
+        setInput(nextKey(input, event.key));
       }
     }
   };
@@ -146,7 +128,12 @@ function Flashcard(props) {
         {input.map((x) => " " + x)}
       </p>
       {/* Here, we insert our answer */}
-      <Feedback answer={answer} reply={reply} hasReplied={hasReplied} />
+      <Feedback
+        answer={answer}
+        reply={reply}
+        hasReplied={hasReplied}
+        displayAnswer={displayAns}
+      />
       {/* <button onClick={props.goback}>Go back</button> */}
       <Link to="/" className="backhome">
         Go back to home screen
