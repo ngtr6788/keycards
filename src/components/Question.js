@@ -21,7 +21,7 @@ export default function Question(props) {
         }
 
         // split many keyboard shortcuts by line break
-        let keybind_list = text.split("\r\n");
+        let keybind_list = text.split("\n");
         console.log(keybind_list);
 
         keybind_list.forEach((line) => console.log(line));
