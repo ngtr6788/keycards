@@ -1,25 +1,36 @@
 import { useState, useEffect } from "react";
 
 export default function Console(props) {
+  const {
+    setReply,
+    hasReplied,
+    setHasReplied,
+    nextKey,
+    setLoading,
+    tick,
+    setTick,
+    displayInput,
+  } = props;
+
   const [input, setInput] = useState([]);
 
   // handleKeyDown takes in keyboard input and stores it
   // however, when enter is hit, the input is submitted for feedback
   const handleKeyDown = (event) => {
-    if (props.hasReplied) {
+    if (hasReplied) {
       setInput([]);
-      props.setReply([]);
-      props.setHasReplied(false);
-      props.setLoading(true);
-      props.setTick(!props.tick);
+      setReply([]);
+      setHasReplied(false);
+      setLoading(true);
+      setTick(!tick);
     } else {
       if (event.key === "Enter") {
-        props.setReply(input);
-        props.setHasReplied(true);
+        setReply(input);
+        setHasReplied(true);
       } else {
         // here, we convert KeyboardDown.key values into the values
         // we commonly see in most keyboard shortcut reference sheets
-        setInput(props.nextKey(input, event.key));
+        setInput(nextKey(input, event.key));
       }
     }
   };
@@ -35,7 +46,7 @@ export default function Console(props) {
 
   return (
     <p className="answer" onKeyDown={handleKeyDown} tabIndex="0">
-      {input.map(props.displayInput)}
+      {input.map(displayInput)}
     </p>
   );
 }

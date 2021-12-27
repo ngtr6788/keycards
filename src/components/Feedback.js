@@ -1,16 +1,18 @@
 function Feedback(props) {
+  const { answer, reply, hasReplied, displayAnswer } = props;
+
   let is_correct = "";
   // neutral state. it has white background
   let style = {
     backgroundColor: "white",
     color: "black",
   };
-  if (props.hasReplied) {
+  if (hasReplied) {
     // is it correct?
     let correct = true;
-    if (props.answer.length === props.reply.length) {
-      for (let i = 0; i < props.answer.length; ++i) {
-        if (props.answer[i] !== props.reply[i]) {
+    if (answer.length === reply.length) {
+      for (let i = 0; i < answer.length; ++i) {
+        if (answer[i] !== reply[i]) {
           correct = false;
         }
       }
@@ -31,11 +33,11 @@ function Feedback(props) {
         color: "#7e0000",
       };
       is_correct += "That's incorrect. Correct answer: ";
-      for (let i = 0; i < props.displayAnswer.length; ++i) {
+      for (let i = 0; i < displayAnswer.length; ++i) {
         if (i !== 0) {
           is_correct += " + ";
         }
-        is_correct += props.displayAnswer[i];
+        is_correct += displayAnswer[i];
       }
     }
   }

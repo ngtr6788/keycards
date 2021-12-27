@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from "react";
 
 export default function Question(props) {
+  const {
+    setAnswer,
+    setDisplayAns,
+    csv,
+    parseKeybind,
+    isLoading,
+    setLoading,
+    tick,
+  } = props;
+
   const [question, setQuestion] = useState("");
 
   // useEffect takes a function where every time the seed is generated
-  // it fetches data from props.csv, it takes a keyboard shortcut
+  // it fetches data from csv, it takes a keyboard shortcut
   // a random one, and sets the Q and A.
   useEffect(() => {
-    fetch(props.csv)
+    fetch(csv)
       .then((response) => {
         if (!response.ok) {
           throw Error("Error: Cannot fetch data for the resource.");
@@ -37,22 +47,20 @@ export default function Question(props) {
         }
 
         const newQuestion = key[1].trim();
-        const [display, newAnswer] = props.parseKeybind(key[0].trim());
+        const [display, newAnswer] = parseKeybind(key[0].trim());
 
         setQuestion(newQuestion);
-        props.setDisplayAns(display);
-        props.setAnswer(newAnswer);
-        props.setLoading(false);
+        setDisplayAns(display);
+        setAnswer(newAnswer);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err.message);
         setQuestion(err.message);
-        props.setLoading(false);
+        setLoading(false);
       });
     // eslint-disable-next-line
-  }, [props.tick]);
+  }, [tick]);
 
-  return (
-    <p className="question">{props.isLoading ? "Loading..." : question}</p>
-  );
+  return <p className="question">{isLoading ? "Loading..." : question}</p>;
 }

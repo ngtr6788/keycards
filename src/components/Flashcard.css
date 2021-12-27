@@ -1,0 +1,22 @@
+.question,
+.answer,
+.feedback {
+  display: flex;
+  margin: auto;
+  width: 400px;
+  height: 75px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #2f2f2f;
+}
+
+.answer {
+  background-color: #2f2f2f;
+  color: white;
+}
+
+.backhome {
+  background-color: crimson;
+  color: white;
+  margin: 25px;
+}

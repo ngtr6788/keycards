@@ -1,0 +1,22 @@
+a {
+  padding: 10px 20px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.vim {
+  background-color: #019833;
+  color: white;
+}
+
+.sublime-win {
+  background-color: #ff9800;
+  color: black;
+}
+
+.vscode-win {
+  background-color: #2f85bb;
+  color: white;
+}
