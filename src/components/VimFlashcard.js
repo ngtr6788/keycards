@@ -9,8 +9,11 @@ export default function VimFlashcard() {
     }
     const splitArray = [...keysArray];
 
-    const strArray = Array.from(keysArray[keysArray.length - 1]);
-    keysArray.pop();
+    let strArray = [];
+    if (keysArray.at(-1) !== "Esc") {
+      strArray = Array.from(keysArray[keysArray.length - 1]);
+      keysArray.pop();
+    }
     const finalArray = keysArray.concat(strArray);
     return [splitArray, finalArray];
   };
@@ -29,7 +32,20 @@ export default function VimFlashcard() {
     return [...input, newKey];
   };
 
+  const displayInput = (key) => {
+    if (key === "Ctrl") {
+      return "Ctrl + ";
+    } else {
+      return key;
+    }
+  };
+
   return (
-    <Flashcard csv={"vim.csv"} parseKeybind={parseKeybind} nextKey={nextKey} />
+    <Flashcard
+      csv={"vim.csv"}
+      parseKeybind={parseKeybind}
+      nextKey={nextKey}
+      displayInput={displayInput}
+    />
   );
 }

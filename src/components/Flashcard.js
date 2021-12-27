@@ -25,7 +25,7 @@ import { Link } from "react-router-dom";
  * @param nextKey - (Array(string), string) => Array(string)
  * @returns an React.create??
  */
-function Flashcard({ csv, parseKeybind, nextKey }) {
+function Flashcard({ csv, parseKeybind, nextKey, displayInput }) {
   // state variables. I tried to avoid this, yet I have a lot
   // of variables. Doesn't look good, codewise.
 
@@ -61,6 +61,7 @@ function Flashcard({ csv, parseKeybind, nextKey }) {
         setLoading={setLoading}
         tick={tick}
         setTick={setTick}
+        displayInput={displayInput}
       />
       <Feedback
         answer={answer}

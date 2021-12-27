@@ -50,7 +50,14 @@ export default function WindowsFlashcard(props) {
     return [...input, newKey];
   };
 
+  const displayInput = (key) => " " + key;
+
   return (
-    <Flashcard csv={props.csv} parseKeybind={parseKeybind} nextKey={nextKey} />
+    <Flashcard
+      csv={props.csv}
+      parseKeybind={parseKeybind}
+      nextKey={nextKey}
+      displayInput={displayInput}
+    />
   );
 }

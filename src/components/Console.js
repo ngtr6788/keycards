@@ -35,7 +35,7 @@ export default function Console(props) {
 
   return (
     <p className="answer" onKeyDown={handleKeyDown} tabIndex="0">
-      {input.map((x) => " " + x)}
+      {input.map(props.displayInput)}
     </p>
   );
 }
