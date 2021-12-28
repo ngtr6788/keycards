@@ -6,6 +6,10 @@ a {
   display: inline-block;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 .vim {
   background-color: #019833;
   color: white;

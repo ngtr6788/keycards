@@ -1,4 +1,4 @@
-import Flashcard from "./Flashcard";
+import Flashcard from "../Flashcard/Flashcard";
 
 export default function VimFlashcard() {
   // we split each key by + or space, capitalize them, then return it
