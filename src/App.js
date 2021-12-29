@@ -22,12 +22,7 @@ function App() {
         <Route exact path="/vscode-win">
           <WindowsFlashcard csv="vscode-win.csv" />
         </Route>
-        <Route exact path="/emacs">
-          <EmacsFlashcard csv="emacs.csv" />
-        </Route>
-        <Route exact path="/emacs2">
-          <EmacsFlashcard csv="emacs2.csv" />
-        </Route>
+        <Route exact path="/emacs" component={EmacsFlashcard} />
         <Route exact path="/" component={Home} />
       </Switch>
       <button className="help" onClick={toggleHelp}>

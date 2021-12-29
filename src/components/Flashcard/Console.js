@@ -17,7 +17,6 @@ export default function Console(props) {
   // handleKeyDown takes in keyboard input and stores it
   // however, when enter is hit, the input is submitted for feedback
   const handleKeyDown = (event) => {
-    console.log(event);
     if (hasReplied) {
       setInput([]);
       setReply([]);

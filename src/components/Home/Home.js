@@ -17,9 +17,6 @@ function Home() {
       <Link className="emacs" to="/emacs">
         Emacs
       </Link>
-      <Link className="emacs" to="/emacs2">
-        Emacs 2?
-      </Link>
     </div>
   );
 }

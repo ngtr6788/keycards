@@ -6,7 +6,7 @@
 
 import Flashcard from "../Flashcard/Flashcard";
 
-export default function EmacsFlashcard({ csv }) {
+export default function EmacsFlashcard() {
   const parseKeybind = (key) => {
     const answerArray = key.split(/-| /);
     return [[key], answerArray];
@@ -45,7 +45,7 @@ export default function EmacsFlashcard({ csv }) {
 
   return (
     <Flashcard
-      csv={csv}
+      csv={"emacs.csv"}
       parseKeybind={parseKeybind}
       nextKey={nextKey}
       displayInput={displayInput}
