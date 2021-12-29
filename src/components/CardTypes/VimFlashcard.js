@@ -18,7 +18,8 @@ export default function VimFlashcard() {
     return [splitArray, finalArray];
   };
 
-  const nextKey = (input, newKey) => {
+  const nextKey = (input, event) => {
+    let newKey = event.key;
     if (newKey === "Escape") {
       newKey = "Esc";
       if (input.length !== 0) {

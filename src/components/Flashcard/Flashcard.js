@@ -20,19 +20,19 @@ import "./Flashcard.css";
  * Parameters:
  * - csv is the path to the csv file to fetch
  * - parseKeybind returns an array of two arrays.
- *  - The first array is an array for Feedback. Every element is
+ *    - The first array is an array for Feedback. Every element is
  * iterated with +'s
- *  - The second array is an array for answer, which represents
+ *    - The second array is an array for answer, which represents
  * every key typed out there
- * - nextKey takes in an array of strings and a string
- *  - The array of strings represent the previous keyboard inputs
- *  - The string represents the next key typed
+ * - nextKey takes in an array of strings and a KeyboardEvent
+ *    - The array of strings represent the previous keyboard inputs
+ *    - The string represents the next key typed
  * - displayInput is a function that takes a string in input
  * (check Console.js) and returns another string to display on console
  *
  * @param {string} csv
  * @param {string => [string[], string[]]} parseKeybind
- * @param {string[], string) => string[])} nextKey
+ * @param {string[], KeyboardEvent) => string[])} nextKey
  * @param {string => string} displayInput
  * @returns {React.createElement}
  */

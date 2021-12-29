@@ -14,6 +14,12 @@ function Home() {
       <Link className="vscode-win" to="/vscode-win">
         VS Code (Windows)
       </Link>
+      <Link className="emacs" to="/emacs">
+        Emacs
+      </Link>
+      <Link className="emacs" to="/emacs2">
+        Emacs 2?
+      </Link>
     </div>
   );
 }

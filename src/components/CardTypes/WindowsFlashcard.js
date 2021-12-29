@@ -8,8 +8,8 @@ export default function WindowsFlashcard(props) {
     return [copyArray, keysArray];
   };
 
-  const nextKey = (input, key) => {
-    let newKey = key.toUpperCase();
+  const nextKey = (input, event) => {
+    let newKey = event.key.toUpperCase();
     switch (newKey) {
       case "ESCAPE":
         newKey = "ESC";

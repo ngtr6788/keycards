@@ -1,5 +1,6 @@
 import WindowsFlashcard from "./components/CardTypes/WindowsFlashcard";
 import VimFlashcard from "./components/CardTypes/VimFlashcard";
+import EmacsFlashcard from "./components/CardTypes/EmacsFlashcard";
 import Home from "./components/Home/Home";
 import Help from "./components/Help/Help";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -20,6 +21,12 @@ function App() {
         </Route>
         <Route exact path="/vscode-win">
           <WindowsFlashcard csv="vscode-win.csv" />
+        </Route>
+        <Route exact path="/emacs">
+          <EmacsFlashcard csv="emacs.csv" />
+        </Route>
+        <Route exact path="/emacs2">
+          <EmacsFlashcard csv="emacs2.csv" />
         </Route>
         <Route exact path="/" component={Home} />
       </Switch>

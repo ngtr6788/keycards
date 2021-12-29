@@ -15,9 +15,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-.help {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}

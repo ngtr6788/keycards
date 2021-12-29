@@ -17,6 +17,7 @@ export default function Console(props) {
   // handleKeyDown takes in keyboard input and stores it
   // however, when enter is hit, the input is submitted for feedback
   const handleKeyDown = (event) => {
+    console.log(event);
     if (hasReplied) {
       setInput([]);
       setReply([]);
@@ -30,7 +31,7 @@ export default function Console(props) {
       } else {
         // here, we convert KeyboardDown.key values into the values
         // we commonly see in most keyboard shortcut reference sheets
-        setInput(nextKey(input, event.key));
+        setInput(nextKey(input, event));
       }
     }
   };
