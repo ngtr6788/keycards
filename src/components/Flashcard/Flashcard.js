@@ -36,6 +36,9 @@ import "./Flashcard.css";
  * @param {string => string} displayInput
  * @returns {React.createElement}
  */
+
+// TODO: REWORK THE FLASHCARD INTERFACE, like nextKey and displayInupt
+
 function Flashcard({ csv, parseKeybind, nextKey, displayInput }) {
   // state variables. I tried to avoid this, yet I have a lot
   // of variables. Doesn't look good, codewise.
@@ -54,7 +57,7 @@ function Flashcard({ csv, parseKeybind, nextKey, displayInput }) {
   const [isLoading, setLoading] = useState(true);
 
   return (
-    <div>
+    <div role="flashcard">
       {/* I decided to do some separation of responsibility as follows. */}
 
       {/* Question's job is to fetch and parse a question/answer pair from csv

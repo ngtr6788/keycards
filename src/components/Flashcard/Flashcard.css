@@ -1,5 +1,5 @@
 .question,
-.answer,
+.console,
 .feedback {
   display: flex;
   margin: auto;
@@ -10,7 +10,7 @@
   border: 2px solid #2f2f2f;
 }
 
-.answer {
+.console {
   background-color: #2f2f2f;
   color: white;
 }

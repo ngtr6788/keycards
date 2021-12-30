@@ -62,5 +62,9 @@ export default function Question(props) {
     // eslint-disable-next-line
   }, [tick]);
 
-  return <p className="question">{isLoading ? "Loading..." : question}</p>;
+  return (
+    <p className="question" role="question">
+      {isLoading ? "Loading..." : question}
+    </p>
+  );
 }

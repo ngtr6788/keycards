@@ -45,7 +45,12 @@ export default function Console(props) {
   });
 
   return (
-    <p className="answer" onKeyDown={handleKeyDown} tabIndex="0">
+    <p
+      className="console"
+      onKeyDown={handleKeyDown}
+      tabIndex="0"
+      role="console"
+    >
       {input.map(displayInput)}
     </p>
   );

@@ -8,7 +8,7 @@ export default function Help({ undoHelp }) {
 
   return (
     <div className="overlay">
-      <div className="help-screen">
+      <div className="help-screen" role="help-screen">
         <p>Using the flashcard:</p>
         {step === 1 && (
           <StepOne incrementStep={() => setStep(2)} undoHelp={undoHelp} />
