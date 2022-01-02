@@ -4,10 +4,16 @@ export default function StepOne({ incrementStep, undoHelp }) {
   return (
     <div className="step" data-testid="step1">
       <img src={step1} alt="Text has been entered."></img>
-      <p>When a question appears, type in the answer.</p>
-      <p>Press ESC to clear. Press Enter to submit.</p>
-      <button onClick={undoHelp}>Exit</button>
-      <button onClick={incrementStep}>Next</button>
+      <p className="my-2">When a question appears, type in the answer.</p>
+      {/* <p>Press ESC to clear. Press Enter to submit.</p> */}
+      <div className="modal-footer my-auto">
+        <button className="btn btn-danger" onClick={undoHelp}>
+          Exit
+        </button>
+        <button className="btn btn-primary" onClick={incrementStep}>
+          Next
+        </button>
+      </div>
     </div>
   );
 }

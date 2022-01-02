@@ -1,4 +1,4 @@
-import "./Help.css";
+// import "./Help.css";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import { useState } from "react";
@@ -8,14 +8,25 @@ export default function Help({ undoHelp }) {
 
   return (
     <div className="overlay">
-      <div className="help-screen" data-testid="help-screen">
-        <p>Using the flashcard:</p>
-        {step === 1 && (
-          <StepOne incrementStep={() => setStep(2)} undoHelp={undoHelp} />
-        )}
-        {step === 2 && (
-          <StepTwo decrementStep={() => setStep(1)} undoHelp={undoHelp} />
-        )}
+      <div className="modal-dialog modal-dialog-centered">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="my-auto">Using the flashcard:</h5>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={undoHelp}
+            ></button>
+          </div>
+          <div className="modal-body">
+            {step === 1 && (
+              <StepOne incrementStep={() => setStep(2)} undoHelp={undoHelp} />
+            )}
+            {step === 2 && (
+              <StepTwo decrementStep={() => setStep(1)} undoHelp={undoHelp} />
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

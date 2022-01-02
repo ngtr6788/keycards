@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./Home.css";
+// import "./Home.css";
 
 function Home() {
   return (
@@ -16,6 +16,9 @@ function Home() {
       </Link>
       <Link className="emacs" to="/emacs">
         Emacs
+      </Link>
+      <Link className="btn btn-outline-dark mx-2" to="/new-deck">
+        New Deck
       </Link>
     </div>
   );

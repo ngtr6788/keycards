@@ -12,10 +12,6 @@ function Feedback(props) {
 
   let is_correct = "";
   // neutral state. it has white background
-  let style = {
-    backgroundColor: "white",
-    color: "black",
-  };
   if (hasReplied) {
     // is it correct?
     let correct = true;
@@ -30,17 +26,9 @@ function Feedback(props) {
     }
     if (correct) {
       // correct state. it has a green theme
-      style = {
-        backgroundColor: "#D5FFD5",
-        color: "#002A00",
-      };
       is_correct = "That's correct.";
     } else {
       // incorrect state. it has a red theme
-      style = {
-        backgroundColor: "#ffe7e7",
-        color: "#7e0000",
-      };
       is_correct += "That's incorrect. Correct answer: ";
       for (let i = 0; i < displayAnswer.length; ++i) {
         if (i !== 0) {
@@ -51,7 +39,7 @@ function Feedback(props) {
     }
   }
   return (
-    <p className={"feedback"} style={style} data-testid="feedback">
+    <p className={"feedback"} data-testid="feedback">
       {is_correct}
     </p>
   );
