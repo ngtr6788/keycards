@@ -49,7 +49,7 @@ export default function Console(props) {
       className="console"
       onKeyDown={handleKeyDown}
       tabIndex="0"
-      role="console"
+      data-testid="console"
     >
       {input.map(displayInput)}
     </p>

@@ -42,7 +42,7 @@ function Feedback(props) {
     }
   }
   return (
-    <p className={"feedback"} style={style} role="feedback">
+    <p className={"feedback"} style={style} data-testid="feedback">
       {is_correct}
     </p>
   );

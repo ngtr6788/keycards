@@ -16,9 +16,9 @@ test("Click on each link displays the flashcard", () => {
   const allLinks = screen.queryAllByRole("link");
   allLinks.forEach((link) => {
     userEvent.click(link);
-    expect(screen.queryByRole("question")).toBeInTheDocument();
-    expect(screen.queryByRole("console")).toBeInTheDocument();
-    expect(screen.queryByRole("feedback")).toBeInTheDocument();
+    expect(screen.queryByTestId("question")).toBeInTheDocument();
+    expect(screen.queryByTestId("console")).toBeInTheDocument();
+    expect(screen.queryByTestId("feedback")).toBeInTheDocument();
     expect(screen.queryByRole("link")).toBeInTheDocument();
   });
 });

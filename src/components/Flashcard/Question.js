@@ -63,7 +63,7 @@ export default function Question(props) {
   }, [tick]);
 
   return (
-    <p className="question" role="question">
+    <p className="question" data-testid="question">
       {isLoading ? "Loading..." : question}
     </p>
   );
