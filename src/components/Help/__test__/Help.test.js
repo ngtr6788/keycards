@@ -10,7 +10,7 @@ test("Help exit button leaves help screen", () => {
   render(<StepOne />);
   const exitBtn = screen.getByRole("button", { name: "Exit" });
   userEvent.click(exitBtn);
-  const helpScreen = screen.queryByRole("help-screen");
+  const helpScreen = screen.queryByTestId("help-screen");
   expect(helpScreen).toBeNull();
 });
 
@@ -18,7 +18,7 @@ test("Help done button leaves help screen", () => {
   render(<StepTwo />);
   const exitBtn = screen.getByRole("button", { name: "Done" });
   userEvent.click(exitBtn);
-  const helpScreen = screen.queryByRole("help-screen");
+  const helpScreen = screen.queryByTestId("help-screen");
   expect(helpScreen).toBeNull();
 });
 
@@ -27,11 +27,11 @@ test("Help can toggle between next and previous", () => {
 
   const nextBtn = screen.getByRole("button", { name: "Next" });
   userEvent.click(nextBtn);
-  const nextScreenText = screen.queryByRole("step2");
+  const nextScreenText = screen.queryByTestId("step2");
   expect(nextScreenText).toBeInTheDocument();
 
   const prevBtn = screen.getByRole("button", { name: "Previous" });
   userEvent.click(prevBtn);
-  const prevScreenText = screen.queryByRole("step1");
+  const prevScreenText = screen.queryByTestId("step1");
   expect(prevScreenText).toBeInTheDocument();
 });

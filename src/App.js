@@ -13,7 +13,7 @@ function App() {
 
   return (
     <Router>
-      <h1>Keyboard Shortcut Pop Quiz, I guess?</h1>
+      <h1>Keycards, a Keyboard Shortcut Pop Quiz?</h1>
       <Switch>
         <Route exact path="/vim" component={VimFlashcard} />
         <Route exact path="/sublime-win">

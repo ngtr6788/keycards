@@ -57,7 +57,7 @@ function Flashcard({ csv, parseKeybind, nextKey, displayInput }) {
   const [isLoading, setLoading] = useState(true);
 
   return (
-    <div role="flashcard">
+    <div data-testid="flashcard">
       {/* I decided to do some separation of responsibility as follows. */}
 
       {/* Question's job is to fetch and parse a question/answer pair from csv

@@ -3,7 +3,7 @@ import "./Home.css";
 
 function Home() {
   return (
-    <div className="home" role="home">
+    <div className="home" data-testid="home">
       <p>Choose which app you want to learn keyboard shortcuts</p>
       <Link className="vim" to="/vim">
         Vim

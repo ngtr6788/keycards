@@ -13,7 +13,7 @@ test("No feedback is given: reply not finished", () => {
       displayAnswer={["Ctrl", "Shift", "A"]}
     />
   );
-  expect(screen.getByRole("feedback").textContent).toBe("");
+  expect(screen.getByTestId("feedback").textContent).toBe("");
 });
 
 test("No feedback is given: reply has finished", () => {
@@ -25,7 +25,7 @@ test("No feedback is given: reply has finished", () => {
       displayAnswer={["Ctrl", "Shift", "A"]}
     />
   );
-  expect(screen.getByRole("feedback").textContent).toBe("");
+  expect(screen.getByTestId("feedback").textContent).toBe("");
 });
 
 test("No feedback is given: reply has overfinished", () => {
@@ -37,7 +37,7 @@ test("No feedback is given: reply has overfinished", () => {
       displayAnswer={["Ctrl", "Shift", "A"]}
     />
   );
-  expect(screen.getByRole("feedback").textContent).toBe("");
+  expect(screen.getByTestId("feedback").textContent).toBe("");
 });
 
 test("Feedback says correct", () => {
@@ -49,7 +49,7 @@ test("Feedback says correct", () => {
       displayAnswer={["Ctrl", "Shift", "A"]}
     />
   );
-  expect(screen.getByRole("feedback").textContent).toBe("That's correct.");
+  expect(screen.getByTestId("feedback").textContent).toBe("That's correct.");
 });
 
 test("Feedback says incorrect", () => {
@@ -61,7 +61,7 @@ test("Feedback says incorrect", () => {
       displayAnswer={["Ctrl", "Shift", "A"]}
     />
   );
-  expect(screen.getByRole("feedback").textContent).toBe(
+  expect(screen.getByTestId("feedback").textContent).toBe(
     "That's incorrect. Correct answer: Ctrl + Shift + A"
   );
 });
@@ -75,7 +75,7 @@ test("Feedback says incorrect, no pluses", () => {
       displayAnswer={[":wq"]}
     />
   );
-  expect(screen.getByRole("feedback").textContent).toBe(
+  expect(screen.getByTestId("feedback").textContent).toBe(
     "That's incorrect. Correct answer: :wq"
   );
 });
@@ -89,7 +89,7 @@ test("No reply, that's incorrect", () => {
       displayAnswer={["Ctrl", "Shift", "s", "Shift", "h"]}
     />
   );
-  expect(screen.getByRole("feedback").textContent).toBe(
+  expect(screen.getByTestId("feedback").textContent).toBe(
     "That's incorrect. Correct answer: Ctrl + Shift + s + Shift + h"
   );
 });

@@ -37,20 +37,20 @@ const MockIdealFlashcard = () => {
 test("Reading control/shift keys", () => {
   render(<MockIdealFlashcard />);
   userEvent.keyboard("{Control>}{Shift>}A{/Shift}{/Control}");
-  const console = screen.queryByRole("console");
+  const console = screen.queryByTestId("console");
   expect(console).toHaveTextContent("Control + Shift + A");
 });
 
 test("Reading regular text", () => {
   render(<MockIdealFlashcard />);
   userEvent.keyboard("qwertyuiopASDFGHJKLzxcvBNM");
-  const console = screen.queryByRole("console");
+  const console = screen.queryByTestId("console");
   expect(console).toHaveTextContent("qwertyuiopASDFGHJKLzxcvBNM");
 });
 
 test("Reading Ctrl keys thrice", () => {
   render(<MockIdealFlashcard />);
   userEvent.keyboard("{Control>}cv{/Control}{Control>}zx{/Control}");
-  const console = screen.queryByRole("console");
+  const console = screen.queryByTestId("console");
   expect(console).toHaveTextContent("Control + cv Control + zx");
 });

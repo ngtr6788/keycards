@@ -8,7 +8,7 @@ test("Help button displays help screen", () => {
   render(<App />);
   const helpBtn = screen.getByRole("button", { name: "Help" });
   userEvent.click(helpBtn);
-  expect(screen.queryByRole("help-screen")).toBeInTheDocument();
+  expect(screen.queryByTestId("help-screen")).toBeInTheDocument();
 });
 
 test("Click on each link displays the flashcard", () => {
@@ -16,9 +16,9 @@ test("Click on each link displays the flashcard", () => {
   const allLinks = screen.queryAllByRole("link");
   allLinks.forEach((link) => {
     userEvent.click(link);
-    expect(screen.queryByRole("question")).toBeInTheDocument();
-    expect(screen.queryByRole("console")).toBeInTheDocument();
-    expect(screen.queryByRole("feedback")).toBeInTheDocument();
+    expect(screen.queryByTestId("question")).toBeInTheDocument();
+    expect(screen.queryByTestId("console")).toBeInTheDocument();
+    expect(screen.queryByTestId("feedback")).toBeInTheDocument();
     expect(screen.queryByRole("link")).toBeInTheDocument();
   });
 });
@@ -30,5 +30,5 @@ test("Back home link works", () => {
     name: /Go back to home screen/i,
   });
   userEvent.click(homeBtn);
-  expect(screen.queryByRole("home")).toBeInTheDocument();
+  expect(screen.queryByTestId("home")).toBeInTheDocument();
 });
