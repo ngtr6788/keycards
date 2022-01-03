@@ -1,4 +1,4 @@
-// import "./Help.css";
+import "./Help.css";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import { useState } from "react";
@@ -12,11 +12,7 @@ export default function Help({ undoHelp }) {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="my-auto">Using the flashcard:</h5>
-            <button
-              type="button"
-              className="btn-close"
-              onClick={undoHelp}
-            ></button>
+            <button type="button" className="btn-close" onClick={undoHelp} />
           </div>
           <div className="modal-body">
             {step === 1 && (

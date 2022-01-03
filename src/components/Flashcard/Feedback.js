@@ -11,6 +11,7 @@ function Feedback(props) {
   });
 
   let is_correct = "";
+  let alert_type = "light";
   // neutral state. it has white background
   if (hasReplied) {
     // is it correct?
@@ -27,9 +28,11 @@ function Feedback(props) {
     if (correct) {
       // correct state. it has a green theme
       is_correct = "That's correct.";
+      alert_type = "success";
     } else {
       // incorrect state. it has a red theme
       is_correct += "That's incorrect. Correct answer: ";
+      alert_type = "danger";
       for (let i = 0; i < displayAnswer.length; ++i) {
         if (i !== 0) {
           is_correct += " + ";
@@ -39,7 +42,7 @@ function Feedback(props) {
     }
   }
   return (
-    <p className={"feedback"} data-testid="feedback">
+    <p className={`feedback alert-${alert_type}`} data-testid="feedback">
       {is_correct}
     </p>
   );

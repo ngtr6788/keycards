@@ -7,16 +7,10 @@
   height: 75px;
   align-items: center;
   justify-content: center;
-  border: 2px solid #2f2f2f;
+  border: 2px solid #2f2f2f !important;
 }
 
 .console {
   background-color: #2f2f2f;
   color: white;
-}
-
-.backhome {
-  background-color: crimson;
-  color: white;
-  margin: 25px;
 }

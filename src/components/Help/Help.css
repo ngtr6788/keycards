@@ -13,26 +13,3 @@
   overflow-x: hidden; /* Disable horizontal scroll */
   /* transition: 0.5s; 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
-
-.help-screen {
-  z-index: 2;
-  background-color: white;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-}
-
-button {
-  border: none;
-  font-size: 15px;
-  padding: 10px 20px;
-  margin: 10px;
-  font-family: "Space Mono", monospace;
-  background-color: rgb(47, 110, 192);
-  color: white;
-  vertical-align: center;
-  text-align: center;
-  cursor: pointer;
-}
