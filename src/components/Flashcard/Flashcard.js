@@ -1,8 +1,9 @@
 import Question from "./Question";
 import Console from "./Console";
 import Feedback from "./Feedback";
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Provider } from "react-redux";
+import flashcardStore from "./flashcard-redux/flashcardStore";
 import "./Flashcard.css";
 
 // Functional component of Flashcard
@@ -40,70 +41,34 @@ import "./Flashcard.css";
 // TODO: REWORK THE FLASHCARD INTERFACE, like nextKey and displayInupt
 
 function Flashcard({ csv, parseKeybind, nextKey, displayInput }) {
-  // state variables. I tried to avoid this, yet I have a lot
-  // of variables. Doesn't look good, codewise.
-
-  // we store our input and answer as an array of keys
-  const [answer, setAnswer] = useState([]);
-  // displayAns is an array of string used to display in Feedback
-  // set by parseKeybind property
-  const [displayAns, setDisplayAns] = useState([]);
-
-  const [reply, setReply] = useState([]);
-  const [hasReplied, setHasReplied] = useState(false);
-
-  // clock + loading
-  const [tick, setTick] = useState(false);
-  const [isLoading, setLoading] = useState(true);
-
   return (
-    <div data-testid="flashcard">
-      {/* I decided to do some separation of responsibility as follows. */}
+    <Provider store={flashcardStore}>
+      <div data-testid="flashcard">
+        {/* I decided to do some separation of responsibility as follows. */}
 
-      {/* Question's job is to fetch and parse a question/answer pair from csv
+        {/* Question's job is to fetch and parse a question/answer pair from csv
       display the question in Question tag (Flashcard doesn't need to know),
       but crucially, it must be able to modify Flashcard's answer state. Also,
       if it's loading, it prints loading..., hence isLoading, and if it finishes
       fetching, it setsLoading to false */}
-      <Question
-        setAnswer={setAnswer}
-        setDisplayAns={setDisplayAns}
-        csv={csv}
-        parseKeybind={parseKeybind}
-        isLoading={isLoading}
-        setLoading={setLoading}
-        tick={tick}
-      />
+        <Question csv={csv} parseKeybind={parseKeybind} />
 
-      {/* Console's responsibility is to read user keyboard input. How it
+        {/* Console's responsibility is to read user keyboard input. How it
       actually takes in and displays input is up to nextKey and displayInput
       property, respectively. However, when it's said and done, it must be 
       able to change the reply, and when feedback is over, when pressing any key, 
       it must be able to go back, hence, being able to set the clock with tick */}
-      <Console
-        setReply={setReply}
-        hasReplied={hasReplied}
-        setHasReplied={setHasReplied}
-        nextKey={nextKey}
-        setLoading={setLoading}
-        tick={tick}
-        setTick={setTick}
-        displayInput={displayInput}
-      />
+        <Console nextKey={nextKey} displayInput={displayInput} />
 
-      {/* Feedback's job is simple. Compare answer and reply and determine
+        {/* Feedback's job is simple. Compare answer and reply and determine
       if it's correct or incorrect. Also, it also displays the correct answer
       if it's wrong, and it shouldn't display anything when you hasReplied not */}
-      <Feedback
-        answer={answer}
-        reply={reply}
-        hasReplied={hasReplied}
-        displayAnswer={displayAns}
-      />
-      <Link to="/" className="backhome">
-        Go back to home screen
-      </Link>
-    </div>
+        <Feedback />
+        <Link to="/" className="backhome btn btn-primary mt-2">
+          Go back to home screen
+        </Link>
+      </div>
+    </Provider>
   );
 }
 

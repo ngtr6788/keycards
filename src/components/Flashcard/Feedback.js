@@ -1,5 +1,14 @@
+import { useSelector } from "react-redux";
+
 function Feedback(props) {
-  const { answer, reply, hasReplied, displayAnswer } = props;
+  const { answer, reply, hasReplied, displayAnswer } = useSelector((state) => {
+    return {
+      answer: state.answer,
+      reply: state.reply,
+      hasReplied: state.hasReplied,
+      displayAnswer: state.displayAnswer,
+    };
+  });
 
   let is_correct = "";
   // neutral state. it has white background

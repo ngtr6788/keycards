@@ -17,12 +17,14 @@ Link: [https://keycards.netlify.app/](https://keycards.netlify.app/)
 
 There are things that I really want to add (a wishlist, if you will):
 
-- Rework the parameter on the Flashcard "API" (maybe include Redux?)
-- Revamp the help screen. It sucks. I know.
-- Learn Bootstrap and integrate it with this app.
+- Rework the parameter on the Flashcard "API"
+  - Learn Redux. (DONE?)
+  - Improved on the Flashcard "API" (DONE!)
+- Revamp the help screen. It sucks. I know. (A little better)
+- Learn Bootstrap and integrate it with this app. (DONE! EASY)
 - Somehow, find a way to integrate Leitner system or add a learn
   option or something.
 - Add more tests probably related to the specific types of
   flashcards, apparently.
 - What the heck are those back end stuff? Teach me.
-- Add way to custom-build flashcard decks.
+- Add way to custom-build flashcard decks. (Working on it)

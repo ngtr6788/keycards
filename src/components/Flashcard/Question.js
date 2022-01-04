@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setAnswer } from "./flashcard-redux/flashcardActions";
 
 export default function Question(props) {
-  const {
-    setAnswer,
-    setDisplayAns,
-    csv,
-    parseKeybind,
-    isLoading,
-    setLoading,
-    tick,
-  } = props;
+  const { csv, parseKeybind } = props;
 
   const [question, setQuestion] = useState("");
+  const tick = useSelector((state) => state.tick);
+  const isLoading = useSelector((state) => state.loading);
+  const dispatch = useDispatch();
 
   // useEffect takes a function where every time the seed is generated
   // it fetches data from csv, it takes a keyboard shortcut
@@ -50,14 +47,12 @@ export default function Question(props) {
         const [display, newAnswer] = parseKeybind(key[0].trim());
 
         setQuestion(newQuestion);
-        setDisplayAns(display);
-        setAnswer(newAnswer);
-        setLoading(false);
+        dispatch(setAnswer(newAnswer, display));
       })
       .catch((err) => {
         console.log(err.message);
         setQuestion(err.message);
-        setLoading(false);
+        dispatch(setAnswer([], []));
       });
     // eslint-disable-next-line
   }, [tick]);
