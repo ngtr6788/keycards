@@ -8,7 +8,10 @@ export default function Help({ undoHelp }) {
 
   return (
     <div className="overlay">
-      <div className="modal-dialog modal-dialog-centered">
+      <div
+        className="modal-dialog modal-dialog-centered"
+        data-testid="help-screen"
+      >
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="my-auto">Using the flashcard:</h5>

@@ -4,6 +4,7 @@ import EmacsFlashcard from "./components/CardTypes/EmacsFlashcard";
 import Home from "./components/Home/Home";
 import Help from "./components/Help/Help";
 import NewDeck from "./components/NewDeck/NewDeck";
+import NewCard from "./components/NewCard/NewCard";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { useState } from "react";
 
@@ -27,6 +28,7 @@ function App() {
           </Route>
           <Route exact path="/emacs" component={EmacsFlashcard} />
           <Route exact path="/new-deck" component={NewDeck} />
+          <Route exact path="/new-card" component={NewCard} />
           <Route exact path="/" component={Home} />
         </Switch>
         <button className="btn btn-info mt-3" onClick={toggleHelp}>

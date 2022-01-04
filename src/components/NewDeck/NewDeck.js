@@ -1,100 +1,52 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./NewDeck.css";
+import MiniConsole from "../MiniConsole/MiniConsole";
 
 // Note to self: This is very badly written.
 // TODO: Give this code some better style.
 
 export default function NewDeck() {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [clearCmd, setClearCmd] = useState([]);
-  const [submitCmd, setSubmitCmd] = useState([]);
-  const [clearClicked, setClearClicked] = useState(false);
-  const [submitClicked, setSubmitClicked] = useState(false);
+  const [deckInfo, setDeckInfo] = useState({
+    name: "",
+    description: "",
+  });
 
-  function handleInput(event, setVar) {
-    setVar(event.target.value);
-  }
+  const [clearKeyBind, setClearKeyBind] = useState([]);
+  const [submitKeyBind, setSubmitKeyBind] = useState([]);
+  const [validated, setValidated] = useState(false);
 
-  function handleKeyDown(event, clicked, cmd, setCmd) {
-    if (clicked) {
-      if (event.key === "Escape" && cmd.length !== 0) {
-        setCmd([]);
-      } else if (cmd.length < 4) {
-        setCmd([...cmd, event.key]);
-      }
-    }
-  }
-
-  function handleClearCmd(event) {
-    handleKeyDown(event, clearClicked, clearCmd, setClearCmd);
-  }
-
-  function handleSubmitCmd(event) {
-    handleKeyDown(event, submitClicked, submitCmd, setSubmitCmd);
+  function handleFormField(event) {
+    setDeckInfo({ ...deckInfo, [event.target.name]: event.target.value });
   }
 
   function handleSubmit(event) {
-    if (name !== "") {
-      console.log(name);
-      console.log(description);
-      console.log(clearCmd);
-      console.log(submitCmd);
+    if (
+      deckInfo.name !== "" &&
+      clearKeyBind.length !== 0 &&
+      submitKeyBind !== 0
+    ) {
+      console.log(deckInfo, clearKeyBind, submitKeyBind);
       // here, we do some back end stuff.
     } else {
       event.preventDefault();
     }
+    setValidated(true);
   }
-
-  function clickedOn(event) {
-    const clickElement = document.getElementById("clear-cmd");
-    const submitElement = document.getElementById("submit-cmd");
-    let targetElement = event.target;
-    do {
-      if (targetElement === clickElement) {
-        setClearClicked(true);
-        setSubmitClicked(false);
-        return;
-      }
-      if (targetElement === submitElement) {
-        setSubmitClicked(true);
-        setClearClicked(false);
-        return;
-      }
-      // Go up the DOM
-      targetElement = targetElement.parentNode;
-    } while (targetElement);
-    setClearClicked(false);
-    setSubmitClicked(false);
-  }
-
-  useEffect(() => {
-    document.addEventListener("click", clickedOn);
-    document.addEventListener("keydown", handleClearCmd);
-    document.addEventListener("keydown", handleSubmitCmd);
-    return function cleanup() {
-      document.removeEventListener("click", clickedOn);
-      document.removeEventListener("keydown", handleClearCmd);
-      document.removeEventListener("keydown", handleSubmitCmd);
-    };
-  });
 
   return (
-    <form className="needs-validation" noValidate>
+    <form className={validated ? "was-validated" : ""} noValidate>
       <h2>New Deck</h2>
       <div className="container-md" style={{ maxWidth: 600 }}>
-        {/* Deck Name field */}
         <div className="col mx-3">
+          {/* Deck Name field */}
           <div className="form-group row my-2">
             <input
+              name="name"
               className="form-control"
               type="text"
               placeholder="Deck Name"
-              value={name}
-              onChange={(event) => {
-                handleInput(event, setName);
-              }}
+              value={deckInfo.name}
+              onChange={handleFormField}
               required
             />
             <div className="invalid-feedback">Name required</div>
@@ -102,15 +54,14 @@ export default function NewDeck() {
 
           {/* Deck Description Field */}
           <div className="form-group row my-2">
-            <input
+            <textarea
+              name="description"
               className="form-control"
               type="text"
               placeholder="Description"
               rows="4"
-              value={description}
-              onChange={(event) => {
-                handleInput(event, setDescription);
-              }}
+              value={deckInfo.description}
+              onChange={handleFormField}
             />
           </div>
         </div>
@@ -119,44 +70,38 @@ export default function NewDeck() {
           {/* Clear keyboard shortcut field */}
           <div className="form-group col m-2">
             <p className="mb-1">Clear keybind</p>
-            <p
-              className="mini-console"
-              style={
-                clearClicked
-                  ? { border: "3px solid #ffc107" }
-                  : { border: "none" }
-              }
-              tabIndex={0}
-              onKeyDown={handleClearCmd}
+            <MiniConsole
               id="clear-cmd"
-            >
-              {clearCmd.map((k) => k)}
-            </p>
+              width={200}
+              height={50}
+              externalValue={clearKeyBind}
+              setExternalValue={setClearKeyBind}
+              validated={validated}
+            />
           </div>
 
           {/* Submit keyboard shortcut field */}
           <div className="form-group col m-2">
             <p className="mb-1">Submit keybind</p>
-            <p
-              className="mini-console"
-              style={
-                submitClicked
-                  ? { border: "3px solid #ffc107" }
-                  : { border: "none" }
-              }
-              tabIndex={0}
-              onKeyDown={handleSubmitCmd}
+            <MiniConsole
               id="submit-cmd"
-            >
-              {submitCmd.map((k) => k)}
-            </p>
+              width={200}
+              height={50}
+              externalValue={submitKeyBind}
+              setExternalValue={setSubmitKeyBind}
+              validated={validated}
+            />
           </div>
         </div>
 
         <Link to="/" className="btn btn-danger m-3" onClick={() => {}}>
           Cancel
         </Link>
-        <Link to="/" className="btn btn-success m-3" onClick={handleSubmit}>
+        <Link
+          to="/new-card"
+          className="btn btn-success m-3"
+          onClick={handleSubmit}
+        >
           Done
         </Link>
       </div>
