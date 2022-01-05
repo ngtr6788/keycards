@@ -1,5 +1,9 @@
 import step2 from "../../assets/step2.png";
 
+/**
+ * This is our second step in our help screen. It must be able
+ * to change back to first step or leave the screen.
+ */
 export default function StepTwo({ decrementStep, undoHelp }) {
   return (
     <div className="step" data-testid="step2">

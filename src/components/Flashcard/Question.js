@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setAnswer } from "./flashcard-redux/flashcardActions";
 
+/* Question's job is to fetch and parse a question/answer pair from csv 
+  display the question in Question tag (Flashcard doesn't need to know),
+  but crucially, it must be able to modify flashcardStore's answer state. 
+  Also, if it's loading, it prints loading..., hence isLoading, and if it 
+  finishes fetching, it setsLoading to false. tick is needed as a sort of 
+  clock. If tick is changed by Console, question reads csv */
+
 export default function Question(props) {
   const { csv, parseKeybind } = props;
 

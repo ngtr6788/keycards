@@ -1,5 +1,7 @@
 import Flashcard from "../Flashcard/Flashcard";
 
+// The Vim Flashcard, taking from vim.csv
+
 export default function VimFlashcard() {
   // we split each key by + or space, capitalize them, then return it
   const parseKeybind = (keybind) => {

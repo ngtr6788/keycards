@@ -1,6 +1,10 @@
 import { useSelector } from "react-redux";
 
-function Feedback(props) {
+/* Feedback's job is simple. Compare answer and reply and determine
+   if it's correct or incorrect. Also, it also displays the correct answer
+   if it's wrong, and it shouldn't display anything when you hasReplied not */
+
+function Feedback() {
   const { answer, reply, hasReplied, displayAnswer } = useSelector((state) => {
     return {
       answer: state.answer,

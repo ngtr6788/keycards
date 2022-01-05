@@ -1,5 +1,8 @@
 import Flashcard from "../Flashcard/Flashcard";
 
+// WindowsFlashcard is a "general" flashcard component, taking
+// in any csv file whose keybinds can support Windows.
+
 export default function WindowsFlashcard(props) {
   // we split each key by + or space, capitalize them, then return it
   const parseKeybind = (keybind) => {

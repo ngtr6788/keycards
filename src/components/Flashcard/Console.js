@@ -2,6 +2,15 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setReply, reset } from "./flashcard-redux/flashcardActions";
 
+/* Console's responsibility is to read user keyboard input. How it
+   actually takes in and displays input is up to nextKey and displayInput
+   property, respectively. However, when it's said and done, it must be 
+   able to change the reply, and when feedback is over, when pressing any key, 
+   it must be able to go back, hence, being able to set the clock with tick.
+   
+   Note that reply and tick are stored in flashcardStore and it can only
+   work with the given actions from flashcardActions. */
+
 export default function Console(props) {
   const { nextKey, displayInput } = props;
 

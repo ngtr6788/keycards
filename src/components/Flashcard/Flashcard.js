@@ -36,6 +36,10 @@ import "./Flashcard.css";
  * @param {string[], KeyboardEvent) => string[])} nextKey
  * @param {string => string} displayInput
  * @returns {React.createElement}
+ *
+ * By the way, this is the reason why in each Flashcard type in
+ * the CardTypes folder, there are different parseKeybind, nextKey
+ * and displayInput function for each flashcard.
  */
 
 // TODO: REWORK THE FLASHCARD INTERFACE, like nextKey and displayInupt
@@ -45,24 +49,8 @@ function Flashcard({ csv, parseKeybind, nextKey, displayInput }) {
     <Provider store={flashcardStore}>
       <div data-testid="flashcard">
         {/* I decided to do some separation of responsibility as follows. */}
-
-        {/* Question's job is to fetch and parse a question/answer pair from csv
-      display the question in Question tag (Flashcard doesn't need to know),
-      but crucially, it must be able to modify Flashcard's answer state. Also,
-      if it's loading, it prints loading..., hence isLoading, and if it finishes
-      fetching, it setsLoading to false */}
         <Question csv={csv} parseKeybind={parseKeybind} />
-
-        {/* Console's responsibility is to read user keyboard input. How it
-      actually takes in and displays input is up to nextKey and displayInput
-      property, respectively. However, when it's said and done, it must be 
-      able to change the reply, and when feedback is over, when pressing any key, 
-      it must be able to go back, hence, being able to set the clock with tick */}
         <Console nextKey={nextKey} displayInput={displayInput} />
-
-        {/* Feedback's job is simple. Compare answer and reply and determine
-      if it's correct or incorrect. Also, it also displays the correct answer
-      if it's wrong, and it shouldn't display anything when you hasReplied not */}
         <Feedback />
         <Link to="/" className="backhome btn btn-primary mt-2">
           Go back to home screen

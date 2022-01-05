@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import MiniConsole from "../MiniConsole/MiniConsole";
 
+// NewDeck screen. Here, we add new decks.
+
 // Note to self: This is very badly written.
 // TODO: Give this code some better style.
 

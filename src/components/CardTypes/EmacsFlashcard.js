@@ -1,10 +1,13 @@
-// Source of basic Emacs commands: https://www.cs.colostate.edu/helpdocs/emacs-bindings
-// Emacs 2: https://people.ast.cam.ac.uk/~vasily/idl/emacs_commands_list.html
+import Flashcard from "../Flashcard/Flashcard";
 
 // Disclaimer: I do not know Emacs. I'm only building this for fun and practicing
 // my React front-end skills. If there is any discrepancy, please let me know.
 
-import Flashcard from "../Flashcard/Flashcard";
+// Source of basic Emacs commands: https://www.cs.colostate.edu/helpdocs/emacs-bindings
+// Emacs 2: https://people.ast.cam.ac.uk/~vasily/idl/emacs_commands_list.html
+
+// This is the Emacs flashcard, taking from emacs.csv and displaying
+// questions.
 
 export default function EmacsFlashcard() {
   const parseKeybind = (key) => {

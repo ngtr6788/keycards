@@ -2,6 +2,8 @@ import MiniConsole from "../MiniConsole/MiniConsole";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+// NewCard screen. We add new cards.
+
 function NewCard() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState([]);

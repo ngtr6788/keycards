@@ -3,6 +3,11 @@ import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import { useState } from "react";
 
+/**
+ * This is our help screen. It has a step state to change which
+ * step to display.
+ */
+
 export default function Help({ undoHelp }) {
   const [step, setStep] = useState(1);
 

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+// Our Home screen. It currently has links to each of the Routes
+
 function Home() {
   return (
     <div className="home" data-testid="home">

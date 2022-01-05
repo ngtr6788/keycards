@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import "./MiniConsole.css";
 
+// Our MiniConsole reads in user's keyboard input and
+// has the ability to change an externalValue and
+// display it inside the console, from the keyboard input
+
 function MiniConsole(props) {
   const { id, width, height, externalValue, setExternalValue, validated } =
     props;
