@@ -1,7 +1,7 @@
 import Question from "./Question";
 import Console from "./Console";
-import Feedback from "./Feedback";
-import { Link } from "react-router-dom";
+import ReduxFeedback from "./ReduxFeedback";
+import ReduxLink from "./ReduxLink";
 import { Provider } from "react-redux";
 import flashcardStore from "./flashcard-redux/flashcardStore";
 import "./Flashcard.css";
@@ -45,16 +45,15 @@ import "./Flashcard.css";
 // TODO: REWORK THE FLASHCARD INTERFACE, like nextKey and displayInupt
 
 function Flashcard({ csv, parseKeybind, nextKey, displayInput }) {
+  // const dispatch = useDispatch();
   return (
     <Provider store={flashcardStore}>
       <div data-testid="flashcard">
         {/* I decided to do some separation of responsibility as follows. */}
         <Question csv={csv} parseKeybind={parseKeybind} />
         <Console nextKey={nextKey} displayInput={displayInput} />
-        <Feedback />
-        <Link to="/" className="backhome btn btn-primary mt-2">
-          Go back to home screen
-        </Link>
+        <ReduxFeedback />
+        <ReduxLink />
       </div>
     </Provider>
   );

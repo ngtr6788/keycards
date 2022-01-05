@@ -22,6 +22,8 @@ export default function NewDeck() {
   }
 
   function handleSubmit(event) {
+    // we only allow submission if the deck name is not empty and
+    // the keybinds are typed.
     if (
       deckInfo.name !== "" &&
       clearKeyBind.length !== 0 &&
@@ -96,6 +98,7 @@ export default function NewDeck() {
           </div>
         </div>
 
+        {/* Buttons */}
         <Link to="/" className="btn btn-danger m-3" onClick={() => {}}>
           Cancel
         </Link>

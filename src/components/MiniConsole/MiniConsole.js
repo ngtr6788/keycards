@@ -11,6 +11,7 @@ function MiniConsole(props) {
 
   const [consoleClicked, setConsoleClicked] = useState(false);
 
+  // we can only type on the console if console is clicked on
   function clickedOn(event) {
     const clickElement = document.getElementById(id);
     let targetElement = event.target;
@@ -26,7 +27,10 @@ function MiniConsole(props) {
 
   function handleKeyDown(event) {
     let result = [];
+    // also, we can only type on the console if it's clicked on
     if (consoleClicked) {
+      // we clear console with ESC button, unless it's empty,
+      // in which case, we display the word escape
       if (event.key === "Escape" && externalValue.length !== 0) {
         result = [];
       } else {
@@ -36,6 +40,7 @@ function MiniConsole(props) {
     }
   }
 
+  // This useEffect is similar to componentDidMount and componentWillUnmount
   useEffect(() => {
     document.addEventListener("click", clickedOn);
     document.addEventListener("keydown", handleKeyDown);

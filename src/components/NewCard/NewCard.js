@@ -15,6 +15,8 @@ function NewCard() {
 
   const handleAdd = (event) => {
     event.preventDefault();
+    // if the question is not empty, we can submit our new card.
+    // note that we allow answer to be empty.
     if (question.length !== 0) {
       console.log(question, answer);
       setQuestion("");
@@ -22,6 +24,8 @@ function NewCard() {
       setValidated(false);
       // we could do some backend stuff here
     } else {
+      // This is so we can show some messages on the screen saying
+      // you're missing something
       setValidated(true);
     }
   };
@@ -30,6 +34,8 @@ function NewCard() {
     <form className={validated ? "was-validated" : ""} noValidate>
       <div className="container">
         <h2>New Card</h2>
+
+        {/* We type our answer in an input form */}
         <input
           className="form-control mx-auto m-2"
           placeholder="Question"
@@ -39,6 +45,8 @@ function NewCard() {
           required
         />
         <div className="invalid-feedback">A question is required.</div>
+
+        {/* We type our answer in a console */}
         <p className="mb-1">Type in your answer below.</p>
         <MiniConsole
           id="correct-answer"
@@ -48,6 +56,8 @@ function NewCard() {
           setExternalValue={setAnswer}
         />
       </div>
+
+      {/* Buttons */}
       <Link className="btn btn-warning m-2" to="/">
         Exit
       </Link>
