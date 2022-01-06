@@ -5,11 +5,12 @@ import MiniConsole from "../MiniConsole/MiniConsole";
 // NewDeck screen. Here, we add new decks.
 
 // Note to self: This is very badly written.
-// TODO: Give this code some better style.
+// TODO: Give this code some better style. (Perhaps a little later,
+// let's just make the tests work first, practicality first, beauty later)
 
 export default function NewDeck() {
   const [deckInfo, setDeckInfo] = useState({
-    name: "",
+    deckname: "",
     description: "",
   });
 
@@ -25,9 +26,9 @@ export default function NewDeck() {
     // we only allow submission if the deck name is not empty and
     // the keybinds are typed.
     if (
-      deckInfo.name !== "" &&
+      deckInfo.deckname !== "" &&
       clearKeyBind.length !== 0 &&
-      submitKeyBind !== 0
+      submitKeyBind.length !== 0
     ) {
       console.log(deckInfo, clearKeyBind, submitKeyBind);
       // here, we do some back end stuff.
@@ -44,10 +45,12 @@ export default function NewDeck() {
         <div className="col mx-3">
           {/* Deck Name field */}
           <div className="form-group row my-2">
+            <label htmlFor="deckname">Deck Name</label>
             <input
-              name="name"
+              name="deckname"
               className="form-control"
               type="text"
+              id="deckname"
               placeholder="Deck Name"
               value={deckInfo.name}
               onChange={handleFormField}
@@ -58,7 +61,9 @@ export default function NewDeck() {
 
           {/* Deck Description Field */}
           <div className="form-group row my-2">
+            <label htmlFor="description">Description</label>
             <textarea
+              id="description"
               name="description"
               className="form-control"
               type="text"
@@ -75,7 +80,7 @@ export default function NewDeck() {
           <div className="form-group col m-2">
             <p className="mb-1">Clear keybind</p>
             <MiniConsole
-              id="clear-cmd"
+              id="clear-keybind"
               width={200}
               height={50}
               externalValue={clearKeyBind}
@@ -88,7 +93,7 @@ export default function NewDeck() {
           <div className="form-group col m-2">
             <p className="mb-1">Submit keybind</p>
             <MiniConsole
-              id="submit-cmd"
+              id="submit-keybind"
               width={200}
               height={50}
               externalValue={submitKeyBind}

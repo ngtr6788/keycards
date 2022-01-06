@@ -62,6 +62,7 @@ function MiniConsole(props) {
         tabIndex={0}
         onKeyDown={handleKeyDown}
         id={id}
+        role={id}
       >
         {props.externalValue.map((k) => {
           if (k.length > 1) {

@@ -20,11 +20,11 @@ There are things that I really want to add (a wishlist, if you will):
 - Rework the parameter on the Flashcard "API"
   - Learn Redux. (DONE?)
   - Improved on the Flashcard "API" (DONE!)
-- Revamp the help screen. It sucks. I know. (A little better)
+- Revamp the help screen. It sucks. I know. (Improved a little better, keep working on it)
 - Learn Bootstrap and integrate it with this app. (DONE! EASY)
+- Add more tests as I add newer components. (DONE and CONTINUE...)
+- Add way to custom-build flashcard decks. (DONE? UI only)
+- Learn Make this website more accessible, and rewrite some of the tests based on that (Gosh that is harder than I thought for this app)
+- What the heck are those back end stuff? Teach me.
 - Somehow, find a way to integrate Leitner system or add a learn
   option or something.
-- Add more tests probably related to the specific types of
-  flashcards, apparently.
-- What the heck are those back end stuff? Teach me.
-- Add way to custom-build flashcard decks. (Working on it)

@@ -36,8 +36,10 @@ function NewCard() {
         <h2>New Card</h2>
 
         {/* We type our answer in an input form */}
+        <label htmlFor="card-question">Question</label>
         <input
           className="form-control mx-auto m-2"
+          id="card-question"
           placeholder="Question"
           style={{ width: 400 }}
           value={question}
